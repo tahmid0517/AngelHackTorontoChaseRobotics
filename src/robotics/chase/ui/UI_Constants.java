@@ -4,7 +4,7 @@ public class UI_Constants
 {
 	public static final String APP_TITLE = "Chase Robotics";
 	public static final String BLUISH_GREY = "6e7684";
-	public static final String ROBOT_NAME = "Kajanan";
+	public static final String ROBOT_NAME = "Chase 9000";
 	public static class SplashScreen
 	{
 		public static final double HEIGHT = 500;
