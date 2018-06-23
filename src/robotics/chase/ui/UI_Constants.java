@@ -31,4 +31,20 @@ public class UI_Constants
 		public static final double BUTTON_WIDTH = 200;
 		public static final double BUTTON_HEIGHT = 70;
 	}
+	
+	public static class PathEditor
+	{
+		public static final double WIDTH = 1010;
+		public static final double HEIGHT = 780;
+		public static final String BACKGROUND_COLOUR = "c6cad1";
+	}
+	
+	public static class ControlButtonBar
+	{
+		public static final String BACKGROUND_COLOUR = "9599a0";
+		public static final double PADDING_TOP = 30;
+		public static final double PADDING_RIGHT = 50;
+		public static final double PADDING_BOTTOM = 20;
+		public static final double PADDING_LEFT = 300;
+	}
 }

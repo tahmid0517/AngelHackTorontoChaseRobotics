@@ -11,11 +11,9 @@ import javafx.scene.control.ScrollPane;
 import javafx.scene.layout.Background;
 import javafx.scene.layout.BackgroundFill;
 import javafx.scene.layout.Border;
-import javafx.scene.layout.HBox;
 import javafx.scene.layout.VBox;
 import javafx.scene.paint.Color;
 import javafx.scene.text.Font;
-import javafx.scene.text.TextAlignment;
 import javafx.stage.Stage;
 
 public class MainMenu 
@@ -56,6 +54,7 @@ public class MainMenu
 		realLink.setTextFill(Color.BLACK);
 		realLink.setFont(linkFont);
 		realLink.setBorder(Border.EMPTY);
+		realLink.setOnAction(e -> openRobot());
 		robotBar.getChildren().add(realLink);
 		for(int i = 1;i <= 25;i++)
 		{
@@ -90,8 +89,24 @@ public class MainMenu
 		addBotAndHelpButtonBar.setLayoutY(UI_Constants.MainMenu.ROBOT_BAR_HEIGHT);
 		rootNode.getChildren().add(addBotAndHelpButtonBar);
 	}
+
+	public void openRobot()
+	{
+		addPathEditor();
+		addControlButtonBar();
+	}
 	
-	//public void styleAddAndHelpBtns()
+	public void addPathEditor()
+	{
+		rootNode.getChildren().add(PathEditor.getInstance().canvas);
+	}
+	
+	public void addControlButtonBar()
+	{
+		rootNode.getChildren().add(ControlButtonBar.getInstance().canvas);
+		ControlButtonBar.getInstance().canvas.toFront();
+	}
+	
 	public void setSceneToWindow(Stage window)
 	{
 		if(scene == null)
