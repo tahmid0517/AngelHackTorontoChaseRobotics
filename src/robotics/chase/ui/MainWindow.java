@@ -8,6 +8,8 @@ public class MainWindow
 	public static void init(Stage w)
 	{
 		window = w;
+		window.setResizable(false);
+		window.setTitle(UI_Constants.APP_TITLE);
 	}
 	
 	public static Stage get()

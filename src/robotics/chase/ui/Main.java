@@ -15,7 +15,7 @@ public class Main extends Application
 	public void start(Stage window)
 	{
 		MainWindow.init(window);
-		displaySplashScreen();
+		displaySplashScreenAndOpenMainMenu();
 	}
 
 	public static void main(String args[])
@@ -23,7 +23,7 @@ public class Main extends Application
 		launch(args);
 	}
 	
-	public void displaySplashScreen()
+	public void displaySplashScreenAndOpenMainMenu()
 	{
 		Stage splashWindow = new Stage();
 		splashWindow.initStyle(StageStyle.UNDECORATED);
@@ -36,7 +36,12 @@ public class Main extends Application
 		rootNode.getChildren().add(imageView);
 		splashWindow.show();
 		PauseTransition pause = new PauseTransition(Duration.seconds(UI_Constants.SplashScreen.DURATION));
-		pause.setOnFinished(e -> splashWindow.close());
+		pause.setOnFinished(e -> 
+		{
+			splashWindow.close();
+			Stage window = MainWindow.get();
+			MainMenu.getInstance().setSceneToWindow(window);
+		});
 		pause.play();
 	}
 }
