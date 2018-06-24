@@ -16,6 +16,7 @@ import javafx.scene.shape.Circle;
 import javafx.scene.shape.Line;
 import javafx.stage.FileChooser;
 import javafx.stage.Stage;
+import robotics.chase.engine.CommandBuilder;
 
 public class PathEditor 
 {
@@ -140,6 +141,12 @@ public class PathEditor
 		}
 		nodes = new ArrayList<Circle>();
 		lines = new ArrayList<Line>();
+	}
+	
+	public void playPath()
+	{
+		CommandBuilder builder = new CommandBuilder(lines);
+		builder.printOutAllCommands();
 	}
 	
 	ArrayList<Circle> nodes;

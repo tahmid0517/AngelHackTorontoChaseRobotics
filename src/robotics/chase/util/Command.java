@@ -1,12 +1,12 @@
 package robotics.chase.util;
 
-public class Commands {
+public class Command {
 	public static final int DRIVE = 0;
 	public static final int TURN = 1;
 	public double value;
 	public double type;
 	
-	public Commands() {
+	public Command() {
 		
 	}
 	public double getValue() {

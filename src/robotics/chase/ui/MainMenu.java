@@ -92,6 +92,7 @@ public class MainMenu
 
 	public void openRobot()
 	{
+		MainWindow.get().setTitle(UI_Constants.APP_TITLE + " - " + UI_Constants.ROBOT_NAME);
 		addPathEditor();
 		addControlButtonBar();
 	}

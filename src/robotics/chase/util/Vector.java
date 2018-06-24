@@ -1,4 +1,7 @@
 package robotics.chase.util;
+
+import javafx.scene.shape.Line;
+
 public class Vector 
 {
 	
@@ -12,6 +15,12 @@ public class Vector
 		vectorX = B.getCurrentX() - A.getCurrentX();
 		vectorY = B.getCurrentY() - A.getCurrentY(); 
 		
+	}
+	
+	public Vector(Line line)
+	{
+		vectorX = line.getEndX() - line.getStartX();
+		vectorY = line.getStartY() - line.getEndY();
 	}
 	
 	public double getVectorX()

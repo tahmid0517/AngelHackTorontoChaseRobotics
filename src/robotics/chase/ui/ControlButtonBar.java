@@ -11,6 +11,7 @@ import javafx.scene.layout.Pane;
 import javafx.scene.paint.Color;
 import javafx.scene.shape.Circle;
 import javafx.scene.text.Font;
+import robotics.chase.engine.CommandBuilder;
 
 public class ControlButtonBar 
 {
@@ -56,5 +57,8 @@ public class ControlButtonBar
 	{
 		undo.setOnAction(e -> PathEditor.getInstance().deleteLastNode());
 		clear.setOnAction(e -> PathEditor.getInstance().clearMap());
+		play.setOnAction(e -> PathEditor.getInstance().playPath());
 	}
+	
+	
 }
