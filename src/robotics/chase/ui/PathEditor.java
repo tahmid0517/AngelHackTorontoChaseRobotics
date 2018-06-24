@@ -2,7 +2,6 @@ package robotics.chase.ui;
 
 import java.io.File;
 import java.util.ArrayList;
-
 import javafx.event.EventHandler;
 import javafx.scene.control.Button;
 import javafx.scene.image.Image;
@@ -151,7 +150,7 @@ public class PathEditor
 	public void playPath()
 	{
 		CommandBuilder builder = new CommandBuilder(lines);
-		String ip_address = "192.168.2.21";
+		String ip_address = "192.168.43.213";
 		int port = 6852;
 		if(client == null)
 			client = new ClientCommunication(ip_address,port);
@@ -168,17 +167,15 @@ public class PathEditor
 			{
 				mssg += "T";
 			}
+			
 			int value = (int)builder.allCommands.get(i).value;
+			mssg += "/";
 			mssg += String.valueOf(value);
 			client.writeMessage(mssg);
-			String response = client.waitForMessage();
-			if(response.equals("DONE"))
-			{
-				if(commandType == Command.DRIVE)
-					setLineCompleted();
-				else if(commandType == Command.TURN)
-					setNodeCompleted();
-			}
+			if(commandType == Command.DRIVE)
+				setLineCompleted();
+			else if(commandType == Command.TURN)
+				setNodeCompleted();	
 		}
 		setNodeCompleted();
 	}

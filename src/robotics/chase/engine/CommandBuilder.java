@@ -24,7 +24,7 @@ public class CommandBuilder
 			vectors.add(vector);
 			Command drive = new Command();
 			drive.setType(Command.DRIVE);
-			drive.setValue(MathUtils.calculateVectorAbsoluteLength(vector));
+			drive.setValue(MathUtils.calculateVectorAbsoluteLength(vector)/8);
 			driveStraights.add(drive);
 		}
 		for(int i = 0;i < driveStraights.size() - 1;i++)
