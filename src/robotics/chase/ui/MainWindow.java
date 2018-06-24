@@ -10,6 +10,7 @@ public class MainWindow
 		window = w;
 		window.setResizable(false);
 		window.setTitle(UI_Constants.APP_TITLE);
+		window.setOnCloseRequest(e -> PathEditor.getInstance().client.closeSocket());
 	}
 	
 	public static Stage get()

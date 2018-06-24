@@ -16,7 +16,9 @@ import javafx.scene.shape.Circle;
 import javafx.scene.shape.Line;
 import javafx.stage.FileChooser;
 import javafx.stage.Stage;
+import robotics.chase.engine.ClientCommunication;
 import robotics.chase.engine.CommandBuilder;
+import robotics.chase.util.Command;
 
 public class PathEditor 
 {
@@ -36,6 +38,7 @@ public class PathEditor
 	Pane imagePane;
 	Image image;
 	double mapWidth,mapHeight,scale;
+	public ClientCommunication client;
 	public PathEditor()
 	{
 		canvas = new Pane();
@@ -141,20 +144,55 @@ public class PathEditor
 		}
 		nodes = new ArrayList<Circle>();
 		lines = new ArrayList<Line>();
+		completedNodes = 0;
+		completedLines = 0;
 	}
 	
 	public void playPath()
 	{
 		CommandBuilder builder = new CommandBuilder(lines);
-		builder.printOutAllCommands();
+		String ip_address = "192.168.2.21";
+		int port = 6852;
+		if(client == null)
+			client = new ClientCommunication(ip_address,port);
+		setNodeCompleted();
+		for(int i = 0;i < builder.allCommands.size();i++)
+		{
+			String mssg = "";
+			double commandType = builder.allCommands.get(i).type;
+			if(commandType == Command.DRIVE)
+			{
+				mssg += "D";
+			}
+			else if(commandType == Command.TURN)
+			{
+				mssg += "T";
+			}
+			int value = (int)builder.allCommands.get(i).value;
+			mssg += String.valueOf(value);
+			client.writeMessage(mssg);
+			String response = client.waitForMessage();
+			if(response.equals("DONE"))
+			{
+				if(commandType == Command.DRIVE)
+					setLineCompleted();
+				else if(commandType == Command.TURN)
+					setNodeCompleted();
+			}
+		}
+		setNodeCompleted();
 	}
 	
 	ArrayList<Circle> nodes;
 	ArrayList<Line> lines;
+	int completedNodes;
+	int completedLines;
 	public void addDrawFunctionality()
 	{
 		nodes = new ArrayList<Circle>();
 		lines = new ArrayList<Line>();
+		completedNodes = 0;
+		completedLines = 0;
 		imagePane.addEventFilter(MouseEvent.MOUSE_CLICKED, new EventHandler<MouseEvent>()
 		{
 			@Override
@@ -165,7 +203,17 @@ public class PathEditor
 		});
 	}
 	
+	public void setNodeCompleted()
+	{
+		int index = completedNodes;
+		nodes.get(index).setFill(Color.web(UI_Constants.PathEditor.COMPLETED_COLOUR));
+		completedNodes++;
+	}
 	
-	
-	
+	public void setLineCompleted()
+	{
+		int index = completedLines;
+		lines.get(index).setStroke(Color.web(UI_Constants.PathEditor.COMPLETED_COLOUR));
+		completedLines++;
+	}
 }

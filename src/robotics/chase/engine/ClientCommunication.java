@@ -68,11 +68,11 @@ public class ClientCommunication {
 		catch(IOException e){}
 	}
 	
-	public static void main(String args[]) throws IOException 
+	/*public static void main(String args[]) throws IOException 
 	{
 		ClientCommunication client = new ClientCommunication("192.168.2.21",6852); 
 		client.writeMessage("poop");
 		client.waitForMessage();
 		client.closeSocket();
-	}
+	}*/
 }

@@ -11,7 +11,7 @@ public class CommandBuilder
 {
 	ArrayList<Command> turns;
 	ArrayList<Command> driveStraights;
-	ArrayList<Command> allCommands;
+	public ArrayList<Command> allCommands;
 	ArrayList<Vector> vectors;
 	public CommandBuilder(ArrayList<Line> lengths)
 	{

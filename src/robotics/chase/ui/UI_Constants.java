@@ -37,6 +37,7 @@ public class UI_Constants
 		public static final double WIDTH = 1010;
 		public static final double HEIGHT = 780;
 		public static final String BACKGROUND_COLOUR = "c6cad1";
+		public static final String COMPLETED_COLOUR = "4bf442";
 	}
 	
 	public static class ControlButtonBar
